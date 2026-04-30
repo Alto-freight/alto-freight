@@ -18,15 +18,15 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#0f1729]/95 backdrop-blur-sm border-b border-[#d4a553]/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-28">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center -ml-2">
+          <Link href="/" className="flex items-center -ml-4">
             <Image
               src="/logo.png"
               alt="Alto Freight Network"
-              width={320}
-              height={110}
-              className="h-24 w-auto mix-blend-lighten"
+              width={400}
+              height={140}
+              className="h-32 w-auto"
               priority
             />
           </Link>
