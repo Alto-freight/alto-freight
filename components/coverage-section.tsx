@@ -1,12 +1,12 @@
-import { MapPin, ArrowRight } from "lucide-react"
+import { MapPin } from "lucide-react"
 import Image from "next/image"
 
-const regions = [
+const coreRegions = [
   {
     name: "WESTERN CANADA HUB",
     location: "British Columbia",
     description:
-      "Our home base in the Lower Mainland serves as a strategic gateway for Pacific trade routes. Deep connections with carriers throughout BC ensure reliable capacity for both intra-provincial and cross-border movements.",
+      "Our home base in the Lower Mainland serves as a strategic gateway for Pacific trade routes. Deep connections with carriers throughout BC ensure reliable capacity for provincial movements.",
     strengths: ["Vancouver Port Access", "Pacific Gateway", "Mountain Corridor Specialists"],
   },
   {
@@ -20,16 +20,25 @@ const regions = [
     name: "CENTRAL CANADIAN CORE",
     location: "Ontario",
     description:
-      "The industrial heart of Canada. Our Ontario network connects manufacturers with markets across North America. The GTA serves as a crucial hub for warehousing and last-mile delivery.",
-    strengths: ["Manufacturing Support", "Cross-Border Trade", "GTA Distribution"],
+      "The industrial heart of Canada. Our Ontario network connects manufacturers with markets across the nation. The GTA serves as a crucial hub for warehousing and distribution.",
+    strengths: ["Manufacturing Support", "Industrial Logistics", "GTA Distribution"],
   },
   {
     name: "EASTERN EXCELLENCE",
     location: "Quebec",
     description:
-      "Bilingual service capabilities and strong regional partnerships ensure seamless operations throughout Quebec. Montreal acts as a vital connection point between Eastern Canada and international markets.",
-    strengths: ["Bilingual Service", "Port of Montreal", "Regional Expertise"],
+      "Strong regional partnerships ensure seamless operations throughout Quebec. Montreal acts as a vital connection point for Eastern Canada and serves major distribution centers.",
+    strengths: ["Port of Montreal", "Regional Expertise", "Eastern Distribution"],
   },
+]
+
+const otherProvinces = [
+  "Saskatchewan",
+  "Manitoba", 
+  "New Brunswick",
+  "Nova Scotia",
+  "Prince Edward Island",
+  "Newfoundland & Labrador",
 ]
 
 export function CoverageSection() {
@@ -65,67 +74,61 @@ export function CoverageSection() {
               </h3>
               <p className="text-gray-300 max-w-xl text-lg">
                 From Vancouver to Halifax, our network spans the entire nation. 
-                Inter-regional lanes connect our hubs, ensuring efficient movement 
-                of goods wherever your business needs them.
+                Reliable freight solutions wherever your business needs them.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Regional Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {regions.map((region, index) => (
-            <div
-              key={index}
-              className="bg-[#1a2235] rounded-xl p-8 border border-[#2a3349] hover:border-[#d4a553]/50 transition-all duration-300 group"
-            >
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-12 h-12 bg-[#d4a553]/10 rounded-lg flex items-center justify-center shrink-0">
-                  <MapPin className="w-6 h-6 text-[#d4a553]" />
-                </div>
-                <div>
-                  <p className="text-[#d4a553] text-sm font-semibold tracking-wider">
-                    {region.location}
-                  </p>
-                  <h3 className="text-xl font-bold text-white">{region.name}</h3>
-                </div>
-              </div>
-              <p className="text-gray-400 mb-6 leading-relaxed">{region.description}</p>
-              <div className="flex flex-wrap gap-2">
-                {region.strengths.map((strength, idx) => (
-                  <span
-                    key={idx}
-                    className="px-3 py-1 bg-[#d4a553]/10 text-[#d4a553] text-sm rounded-full font-medium"
-                  >
-                    {strength}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Inter-Regional Routes */}
-        <div className="mt-16 text-center">
-          <h3 className="text-2xl font-bold text-white mb-6">
-            INTER-REGIONAL <span className="text-[#d4a553]">LANES</span>
-          </h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {[
-              "BC ↔ Alberta",
-              "Alberta ↔ Ontario",
-              "Ontario ↔ Quebec",
-              "BC ↔ Ontario",
-              "Alberta ↔ Quebec",
-              "Coast to Coast",
-            ].map((lane, index) => (
+        {/* Core Regional Cards */}
+        <div className="mb-12">
+          <h3 className="text-xl font-bold text-[#d4a553] mb-6 tracking-wider">CORE REGIONS</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {coreRegions.map((region, index) => (
               <div
                 key={index}
-                className="flex items-center gap-2 px-6 py-3 bg-[#1a2235] border border-[#2a3349] rounded-full text-gray-300 hover:border-[#d4a553] hover:text-[#d4a553] transition-colors duration-200"
+                className="bg-[#1a2235] rounded-xl p-8 border border-[#2a3349] hover:border-[#d4a553]/50 transition-all duration-300 group"
               >
-                <ArrowRight className="w-4 h-4" />
-                <span className="font-medium">{lane}</span>
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="w-12 h-12 bg-[#d4a553]/10 rounded-lg flex items-center justify-center shrink-0">
+                    <MapPin className="w-6 h-6 text-[#d4a553]" />
+                  </div>
+                  <div>
+                    <p className="text-[#d4a553] text-sm font-semibold tracking-wider">
+                      {region.location}
+                    </p>
+                    <h3 className="text-xl font-bold text-white">{region.name}</h3>
+                  </div>
+                </div>
+                <p className="text-gray-400 mb-6 leading-relaxed">{region.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {region.strengths.map((strength, idx) => (
+                    <span
+                      key={idx}
+                      className="px-3 py-1 bg-[#d4a553]/10 text-[#d4a553] text-sm rounded-full font-medium"
+                    >
+                      {strength}
+                    </span>
+                  ))}
+                </div>
               </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Other Provinces */}
+        <div className="bg-[#1a2235] rounded-xl p-8 border border-[#2a3349]">
+          <h3 className="text-xl font-bold text-white mb-4">
+            ALSO SERVING
+          </h3>
+          <div className="flex flex-wrap gap-3">
+            {otherProvinces.map((province, index) => (
+              <span
+                key={index}
+                className="px-4 py-2 bg-[#0f1729] border border-[#2a3349] rounded-lg text-gray-300 font-medium hover:border-[#d4a553]/50 hover:text-white transition-colors duration-200"
+              >
+                {province}
+              </span>
             ))}
           </div>
         </div>

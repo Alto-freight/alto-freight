@@ -40,12 +40,7 @@ const reasons = [
   },
 ]
 
-const stats = [
-  { value: "500+", label: "Trusted Carriers" },
-  { value: "10K+", label: "Loads Delivered" },
-  { value: "98%", label: "On-Time Delivery" },
-  { value: "24/7", label: "Customer Support" },
-]
+
 
 export function WhyAltoSection() {
   return (
@@ -105,21 +100,7 @@ export function WhyAltoSection() {
           </div>
         </div>
 
-        {/* Stats Bar */}
-        <div className="bg-[#0f1729] rounded-xl p-8 sm:p-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-[#d4a553] mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-gray-400 font-medium tracking-wider text-sm">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+
       </div>
     </section>
   )
