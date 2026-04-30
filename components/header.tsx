@@ -26,7 +26,7 @@ export function Header() {
               alt="Alto Freight Network"
               width={280}
               height={100}
-              className="h-28 w-auto"
+              className="h-28 w-auto mix-blend-lighten"
               priority
             />
           </Link>
