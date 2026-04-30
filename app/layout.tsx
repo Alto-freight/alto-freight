@@ -21,6 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-[#0f1729]">
+      <head>
+        <meta name="google-site-verification" content="YOUR_CODE_HERE" />
+      </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
