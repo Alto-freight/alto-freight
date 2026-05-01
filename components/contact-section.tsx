@@ -13,27 +13,34 @@ export function ContactSection() {
     message: "",
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault()
 
-  const text = `New Quote Request:
-  Name: ${formData.name}
-  Company: ${formData.company}
-  Email: ${formData.email}
-  Phone: ${formData.phone}
+  try {
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
 
-  Details:
-  ${formData.message}`
-
-    const url = `https://wa.me/17783889989?text=${encodeURIComponent(text)}`
-
-    window.open(url, "_blank")
-
-    alert("Thank you for your inquiry! We will get back to you shortly.")
-
-    setFormData({ name: "", email: "", phone: "", company: "", message: "" })
- }
-
+    if (res.ok) {
+      alert("Thank you! We will contact you shortly.")
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        message: "",
+      })
+    } else {
+      alert("Failed to send message.")
+    }
+  } catch (error) {
+    alert("Error sending message.")
+  }
+}
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
