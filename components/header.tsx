@@ -1,8 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Menu, X } from "lucide-react"
 
 const navItems = [
@@ -15,13 +14,14 @@ const navItems = [
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
+  // ✅ Scroll + URL update
   const handleNavClick = (e: any, id: string) => {
     e.preventDefault()
 
-    // ✅ update URL without # or page reload
+    // update URL (no reload, no #)
     window.history.pushState(null, "", `/${id}`)
 
-    // ✅ smooth scroll
+    // scroll
     document.getElementById(id)?.scrollIntoView({
       behavior: "smooth",
     })
@@ -29,13 +29,27 @@ export function Header() {
     setMobileMenuOpen(false)
   }
 
+  // ✅ Handle refresh / direct link like /coverage
+  useEffect(() => {
+    const path = window.location.pathname.replace("/", "")
+
+    if (path) {
+      setTimeout(() => {
+        document.getElementById(path)?.scrollIntoView({
+          behavior: "smooth",
+        })
+      }, 50)
+    }
+  }, [])
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#0f1729]/95 backdrop-blur-sm border-b border-[#d4a553]/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
         <div className="flex items-center justify-between h-28">
 
           {/* Logo */}
-          <Link href="/" className="flex items-center -ml-2">
+          <a href="/" className="flex items-center -ml-2">
             <Image
               src="/logo.png"
               alt="Alto Freight Network"
@@ -44,7 +58,7 @@ export function Header() {
               className="h-24 w-auto mix-blend-lighten"
               priority
             />
-          </Link>
+          </a>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
@@ -82,6 +96,7 @@ export function Header() {
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <nav className="md:hidden py-4 border-t border-[#d4a553]/20">
+
             <div className="flex flex-col gap-4">
 
               {navItems.map((item) => (
@@ -102,6 +117,7 @@ export function Header() {
               </button>
 
             </div>
+
           </nav>
         )}
 
