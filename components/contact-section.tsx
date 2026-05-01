@@ -14,33 +14,35 @@ export function ContactSection() {
   })
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault()
+    e.preventDefault()
 
-  try {
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-
-    if (res.ok) {
-      alert("Thank you! We will contact you shortly.")
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        company: "",
-        message: "",
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       })
-    } else {
-      alert("Failed to send message.")
+
+      const data = await res.json()
+
+      if (res.ok) {
+        alert("Thank you! We will contact you shortly.")
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          company: "",
+          message: "",
+        })
+      } else {
+        alert(data.error || "Failed to send message.")
+      }
+    } catch (error) {
+      alert("Error sending message.")
     }
-  } catch (error) {
-    alert("Error sending message.")
   }
-}
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
