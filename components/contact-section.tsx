@@ -13,7 +13,6 @@ export function ContactSection() {
     message: "",
   })
 
-  // ✅ UPDATED: WhatsApp submit
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
@@ -26,19 +25,13 @@ Phone: ${formData.phone}
 Details:
 ${formData.message}`
 
-    // 🔑 Replace with your WhatsApp number (Canada format)
     const url = `https://wa.me/12368280808?text=${encodeURIComponent(text)}`
 
     window.open(url, "_blank")
 
-    // Clear form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      company: "",
-      message: "",
-    })
+    alert("Thank you for your inquiry! We will get back to you shortly.")
+
+    setFormData({ name: "", email: "", phone: "", company: "", message: "" })
   }
 
   const handleChange = (
@@ -59,6 +52,7 @@ ${formData.message}`
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
         <div className="mb-16 text-right">
           <p className="text-[#d4a553] font-semibold tracking-wider mb-2">GET IN TOUCH</p>
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
@@ -73,7 +67,7 @@ ${formData.message}`
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
-          {/* LEFT SIDE INFO (unchanged) */}
+          {/* CONTACT INFO */}
           <div>
             <div className="bg-[#1a2235] rounded-xl p-8 border border-[#2a3349] mb-8">
               <h3 className="text-2xl font-bold text-white mb-6">
@@ -81,6 +75,7 @@ ${formData.message}`
               </h3>
 
               <div className="space-y-6">
+
                 <div className="flex items-start gap-4">
                   <Mail className="w-6 h-6 text-[#d4a553]" />
                   <a href="mailto:admin@altofreight.ca" className="text-white">
@@ -99,7 +94,7 @@ ${formData.message}`
                   <MapPin className="w-6 h-6 text-[#d4a553]" />
                   <p className="text-white">
                     13137 82A Ave<br />
-                    Surrey, BC
+                    Surrey, BC V3W 9Y6
                   </p>
                 </div>
 
@@ -109,12 +104,14 @@ ${formData.message}`
                     Mon–Fri: 8AM–6PM
                   </p>
                 </div>
+
               </div>
             </div>
           </div>
 
           {/* FORM */}
           <div className="bg-white rounded-xl p-8">
+
             <h3 className="text-2xl font-bold text-[#0f1729] mb-6">
               REQUEST A <span className="text-[#d4a553]">QUOTE</span>
             </h3>
@@ -122,49 +119,45 @@ ${formData.message}`
             <form onSubmit={handleSubmit} className="space-y-5">
 
               <input
-                type="text"
                 name="name"
-                placeholder="Full Name"
                 value={formData.name}
                 onChange={handleChange}
                 required
+                placeholder="Full Name"
                 className="w-full p-3 border rounded"
               />
 
               <input
-                type="text"
                 name="company"
-                placeholder="Company"
                 value={formData.company}
                 onChange={handleChange}
+                placeholder="Company"
                 className="w-full p-3 border rounded"
               />
 
               <input
-                type="email"
                 name="email"
-                placeholder="Email"
                 value={formData.email}
                 onChange={handleChange}
                 required
+                placeholder="Email"
                 className="w-full p-3 border rounded"
               />
 
               <input
-                type="tel"
                 name="phone"
-                placeholder="Phone"
                 value={formData.phone}
                 onChange={handleChange}
+                placeholder="Phone"
                 className="w-full p-3 border rounded"
               />
 
               <textarea
                 name="message"
-                placeholder="Shipment details..."
                 value={formData.message}
                 onChange={handleChange}
                 required
+                placeholder="Shipment details..."
                 className="w-full p-3 border rounded"
               />
 
@@ -173,10 +166,11 @@ ${formData.message}`
                 className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-[#0f1729] text-white font-semibold rounded-lg"
               >
                 <Send className="w-5 h-5" />
-                SEND VIA WHATSAPP
+                SEND MESSAGE
               </button>
 
             </form>
+
           </div>
         </div>
       </div>
