@@ -1,27 +1,25 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
 
 const navItems = [
-  { id: "services", label: "SERVICES" },
-  { id: "coverage", label: "COVERAGE" },
-  { id: "why-alto", label: "WHY ALTO" },
-  { id: "contact", label: "CONTACT" },
+  { href: "services", label: "SERVICES" },
+  { href: "coverage", label: "COVERAGE" },
+  { href: "why-alto", label: "WHY ALTO" },
+  { href: "contact", label: "CONTACT" },
 ]
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  // ✅ ONLY SCROLL (no URL changes at all)
-  const handleNavClick = (id: string) => {
-    const el = document.getElementById(id)
-
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" })
-    }
-
+  // ✅ SAFE SCROLL (NO ROUTES, NO 404)
+  const handleScroll = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({
+      behavior: "smooth",
+    })
     setMobileMenuOpen(false)
   }
 
@@ -32,7 +30,7 @@ export function Header() {
         <div className="flex items-center justify-between h-28">
 
           {/* Logo */}
-          <a href="/" className="flex items-center -ml-2">
+          <Link href="/" className="flex items-center -ml-2">
             <Image
               src="/logo.png"
               alt="Alto Freight Network"
@@ -41,15 +39,15 @@ export function Header() {
               className="h-24 w-auto mix-blend-lighten"
               priority
             />
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
 
             {navItems.map((item) => (
               <button
-                key={item.id}
-                onClick={() => handleNavClick(item.id)}
+                key={item.href}
+                onClick={() => handleScroll(item.href)}
                 className="text-sm font-semibold tracking-wider text-white hover:text-[#d4a553] transition-colors duration-200 bg-transparent"
               >
                 {item.label}
@@ -57,7 +55,7 @@ export function Header() {
             ))}
 
             <button
-              onClick={() => handleNavClick("contact")}
+              onClick={() => handleScroll("contact")}
               className="ml-4 px-6 py-2.5 bg-[#d4a553] text-[#0f1729] font-semibold text-sm tracking-wider rounded hover:bg-[#e8c478] transition-colors duration-200"
             >
               GET A QUOTE
@@ -83,16 +81,16 @@ export function Header() {
 
               {navItems.map((item) => (
                 <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item.id)}
-                  className="text-sm font-semibold tracking-wider text-white hover:text-[#d4a553] py-2 text-left"
+                  key={item.href}
+                  onClick={() => handleScroll(item.href)}
+                  className="text-sm font-semibold tracking-wider text-white hover:text-[#d4a553] transition-colors duration-200 py-2 text-left"
                 >
                   {item.label}
                 </button>
               ))}
 
               <button
-                onClick={() => handleNavClick("contact")}
+                onClick={() => handleScroll("contact")}
                 className="mt-2 px-6 py-2.5 bg-[#d4a553] text-[#0f1729] font-semibold text-sm tracking-wider rounded"
               >
                 GET A QUOTE
