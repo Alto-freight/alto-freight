@@ -10,7 +10,7 @@ export async function POST(req: Request) {
 
     await resend.emails.send({
       from: "Alto Freight <onboarding@resend.dev>",
-      to: "admin@altofreight.ca",
+      to: "altofreight@gmail.com",
       subject: "New Quote Request",
       html: `
         <h2>New Freight Quote</h2>
