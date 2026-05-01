@@ -14,14 +14,13 @@ const navItems = [
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  // ✅ Scroll + URL update
+  // ✅ FIXED: use hash instead of real routes
   const handleNavClick = (e: any, id: string) => {
     e.preventDefault()
 
-    // update URL (no reload, no #)
-    window.history.pushState(null, "", `/${id}`)
+    // update URL safely (NO 404 risk)
+    window.history.pushState(null, "", `/#${id}`)
 
-    // scroll
     document.getElementById(id)?.scrollIntoView({
       behavior: "smooth",
     })
@@ -29,16 +28,16 @@ export function Header() {
     setMobileMenuOpen(false)
   }
 
-  // ✅ Handle refresh / direct link like /coverage
+  // ✅ handle refresh + direct link
   useEffect(() => {
-    const path = window.location.pathname.replace("/", "")
+    const hash = window.location.hash.replace("#", "")
 
-    if (path) {
+    if (hash) {
       setTimeout(() => {
-        document.getElementById(path)?.scrollIntoView({
+        document.getElementById(hash)?.scrollIntoView({
           behavior: "smooth",
         })
-      }, 50)
+      }, 100)
     }
   }, [])
 
@@ -86,7 +85,6 @@ export function Header() {
           <button
             className="md:hidden text-white p-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
