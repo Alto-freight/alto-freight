@@ -87,7 +87,7 @@ export function ContactSection() {
                       href="tel:2368280808"
                       className="text-white hover:text-[#d4a553] transition-colors font-medium"
                     >
-                      7236-828-0808
+                      236-828-0808
                     </a>
                   </div>
                 </div>
