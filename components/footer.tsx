@@ -89,7 +89,7 @@ export function Footer() {
                   href="tel:7783889988"
                   className="text-gray-400 hover:text-[#d4a553] transition-colors"
                 >
-                  778-388-9988
+                  236-828-0808
                 </a>
               </div>
               <div className="flex items-start gap-3">
