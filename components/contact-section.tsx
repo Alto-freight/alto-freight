@@ -84,10 +84,10 @@ export function ContactSection() {
                   <div>
                     <p className="text-gray-400 text-sm mb-1">PHONE</p>
                     <a
-                      href="tel:7783889988"
+                      href="tel:2368280808"
                       className="text-white hover:text-[#d4a553] transition-colors font-medium"
                     >
-                      778-388-9988
+                      7236-828-0808
                     </a>
                   </div>
                 </div>
