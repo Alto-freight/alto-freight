@@ -25,7 +25,7 @@ export function ContactSection() {
   Details:
   ${formData.message}`
 
-    const url = `https://wa.me/12368280808?text=${encodeURIComponent(text)}`
+    const url = `https://wa.me/17783889989?text=${encodeURIComponent(text)}`
 
     window.open(url, "_blank")
 
