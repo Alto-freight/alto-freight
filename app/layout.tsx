@@ -43,16 +43,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-[#0f1729]">
       <head>
-        {/* ✅ Google Search Console Verification (paste your real token here) */}
+        {/* Google Search Console Verification */}
         <meta
           name="google-site-verification"
           content="e8b56d7ab2353405"
         />
 
-        {/* SEO helpers */}
         <meta name="robots" content="index, follow" />
 
-        {/* Structured Data for Google Logo */}
+        {/* ✅ Structured Data (IMPORTANT for Google + LinkedIn connection) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -62,6 +61,9 @@ export default function RootLayout({
               name: "Alto Freight",
               url: "https://altofreight.ca",
               logo: "https://altofreight.ca/logo.png",
+              sameAs: [
+                "https://www.linkedin.com/company/alto-freight-network-inc/"
+              ]
             }),
           }}
         />
