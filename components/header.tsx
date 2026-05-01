@@ -18,6 +18,10 @@ export function Header() {
   const handleNavClick = (e: any, id: string) => {
     e.preventDefault()
 
+    // ✅ update URL without # or page reload
+    window.history.pushState(null, "", `/${id}`)
+
+    // ✅ smooth scroll
     document.getElementById(id)?.scrollIntoView({
       behavior: "smooth",
     })
