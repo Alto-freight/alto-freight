@@ -1,24 +1,32 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
 
 const navItems = [
-  { id: "services", label: "SERVICES" },
-  { id: "coverage", label: "COVERAGE" },
-  { id: "why-alto", label: "WHY ALTO" },
-  { id: "contact", label: "CONTACT" },
+  { href: "services", label: "SERVICES" },
+  { href: "coverage", label: "COVERAGE" },
+  { href: "why-alto", label: "WHY ALTO" },
+  { href: "contact", label: "CONTACT" },
 ]
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  // ✅ PURE SCROLL ONLY (NO URL CHANGE)
-  const handleScroll = (id: string) => {
+  // ✅ HASH NAVIGATION (NO 404 EVER)
+  const handleNavClick = (e: any, id: string) => {
+    e.preventDefault()
+
+    // update URL with #
+    window.location.hash = id
+
+    // scroll to section
     document.getElementById(id)?.scrollIntoView({
       behavior: "smooth",
     })
+
     setMobileMenuOpen(false)
   }
 
@@ -29,7 +37,7 @@ export function Header() {
         <div className="flex items-center justify-between h-28">
 
           {/* Logo */}
-          <a href="/" className="flex items-center -ml-2">
+          <Link href="/" className="flex items-center -ml-2">
             <Image
               src="/logo.png"
               alt="Alto Freight Network"
@@ -38,40 +46,42 @@ export function Header() {
               className="h-24 w-auto mix-blend-lighten"
               priority
             />
-          </a>
+          </Link>
 
-          {/* Desktop */}
+          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
 
             {navItems.map((item) => (
               <button
-                key={item.id}
-                onClick={() => handleScroll(item.id)}
-                className="text-sm font-semibold tracking-wider text-white hover:text-[#d4a553] bg-transparent"
+                key={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
+                className="text-sm font-semibold tracking-wider text-white hover:text-[#d4a553] transition-colors duration-200 bg-transparent"
               >
                 {item.label}
               </button>
             ))}
 
             <button
-              onClick={() => handleScroll("contact")}
-              className="ml-4 px-6 py-2.5 bg-[#d4a553] text-[#0f1729] font-semibold text-sm rounded"
+              onClick={(e) => handleNavClick(e, "contact")}
+              className="ml-4 px-6 py-2.5 bg-[#d4a553] text-[#0f1729] font-semibold text-sm tracking-wider rounded hover:bg-[#e8c478] transition-colors duration-200"
             >
               GET A QUOTE
             </button>
 
           </nav>
 
-          {/* Mobile */}
+          {/* Mobile Menu Button */}
           <button
             className="md:hidden text-white p-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
         </div>
 
+        {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <nav className="md:hidden py-4 border-t border-[#d4a553]/20">
 
@@ -79,17 +89,17 @@ export function Header() {
 
               {navItems.map((item) => (
                 <button
-                  key={item.id}
-                  onClick={() => handleScroll(item.id)}
-                  className="text-sm font-semibold text-white py-2 text-left"
+                  key={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className="text-sm font-semibold tracking-wider text-white hover:text-[#d4a553] transition-colors duration-200 py-2 text-left"
                 >
                   {item.label}
                 </button>
               ))}
 
               <button
-                onClick={() => handleScroll("contact")}
-                className="mt-2 px-6 py-2.5 bg-[#d4a553] text-[#0f1729] font-semibold text-sm rounded"
+                onClick={(e) => handleNavClick(e, "contact")}
+                className="mt-2 px-6 py-2.5 bg-[#d4a553] text-[#0f1729] font-semibold text-sm tracking-wider rounded hover:bg-[#e8c478] transition-colors duration-200 text-center"
               >
                 GET A QUOTE
               </button>
