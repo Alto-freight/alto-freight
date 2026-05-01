@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Mail, Phone, MapPin, Send, Clock } from "lucide-react"
+import { Mail, Phone, MapPin, Send, Clock, Loader2 } from "lucide-react"
 import Image from "next/image"
 
 export function ContactSection() {
@@ -12,13 +12,34 @@ export function ContactSection() {
     company: "",
     message: "",
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
-    console.log("Form submitted:", formData)
-    alert("Thank you for your inquiry! We will get back to you shortly.")
-    setFormData({ name: "", email: "", phone: "", company: "", message: "" })
+    setIsSubmitting(true)
+    setSubmitStatus("idle")
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        setSubmitStatus("success")
+        setFormData({ name: "", email: "", phone: "", company: "", message: "" })
+      } else {
+        setSubmitStatus("error")
+      }
+    } catch {
+      setSubmitStatus("error")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (
@@ -236,11 +257,33 @@ export function ContactSection() {
 
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-[#0f1729] text-white font-semibold rounded-lg hover:bg-[#1a2235] transition-colors duration-200"
+                disabled={isSubmitting}
+                className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-[#0f1729] text-white font-semibold rounded-lg hover:bg-[#1a2235] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <Send className="w-5 h-5" />
-                SEND MESSAGE
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    SENDING...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5" />
+                    SEND MESSAGE
+                  </>
+                )}
               </button>
+
+              {submitStatus === "success" && (
+                <div className="p-4 bg-green-100 border border-green-300 rounded-lg text-green-800 text-center">
+                  Thank you for your inquiry! We will get back to you shortly.
+                </div>
+              )}
+
+              {submitStatus === "error" && (
+                <div className="p-4 bg-red-100 border border-red-300 rounded-lg text-red-800 text-center">
+                  Something went wrong. Please try again or contact us directly.
+                </div>
+              )}
             </form>
           </div>
         </div>
