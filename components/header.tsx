@@ -1,21 +1,20 @@
 "use client"
 
 import Image from "next/image"
-import Link from "next/link"
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
 
 const navItems = [
-  { href: "services", label: "SERVICES" },
-  { href: "coverage", label: "COVERAGE" },
-  { href: "why-alto", label: "WHY ALTO" },
-  { href: "contact", label: "CONTACT" },
+  { id: "services", label: "SERVICES" },
+  { id: "coverage", label: "COVERAGE" },
+  { id: "why-alto", label: "WHY ALTO" },
+  { id: "contact", label: "CONTACT" },
 ]
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  // ✅ SAFE SCROLL (NO ROUTES, NO 404)
+  // ✅ PURE SCROLL ONLY (NO URL CHANGE)
   const handleScroll = (id: string) => {
     document.getElementById(id)?.scrollIntoView({
       behavior: "smooth",
@@ -30,7 +29,7 @@ export function Header() {
         <div className="flex items-center justify-between h-28">
 
           {/* Logo */}
-          <Link href="/" className="flex items-center -ml-2">
+          <a href="/" className="flex items-center -ml-2">
             <Image
               src="/logo.png"
               alt="Alto Freight Network"
@@ -39,16 +38,16 @@ export function Header() {
               className="h-24 w-auto mix-blend-lighten"
               priority
             />
-          </Link>
+          </a>
 
-          {/* Desktop Navigation */}
+          {/* Desktop */}
           <nav className="hidden md:flex items-center gap-8">
 
             {navItems.map((item) => (
               <button
-                key={item.href}
-                onClick={() => handleScroll(item.href)}
-                className="text-sm font-semibold tracking-wider text-white hover:text-[#d4a553] transition-colors duration-200 bg-transparent"
+                key={item.id}
+                onClick={() => handleScroll(item.id)}
+                className="text-sm font-semibold tracking-wider text-white hover:text-[#d4a553] bg-transparent"
               >
                 {item.label}
               </button>
@@ -56,14 +55,14 @@ export function Header() {
 
             <button
               onClick={() => handleScroll("contact")}
-              className="ml-4 px-6 py-2.5 bg-[#d4a553] text-[#0f1729] font-semibold text-sm tracking-wider rounded hover:bg-[#e8c478] transition-colors duration-200"
+              className="ml-4 px-6 py-2.5 bg-[#d4a553] text-[#0f1729] font-semibold text-sm rounded"
             >
               GET A QUOTE
             </button>
 
           </nav>
 
-          {/* Mobile Button */}
+          {/* Mobile */}
           <button
             className="md:hidden text-white p-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -73,7 +72,6 @@ export function Header() {
 
         </div>
 
-        {/* Mobile Menu */}
         {mobileMenuOpen && (
           <nav className="md:hidden py-4 border-t border-[#d4a553]/20">
 
@@ -81,9 +79,9 @@ export function Header() {
 
               {navItems.map((item) => (
                 <button
-                  key={item.href}
-                  onClick={() => handleScroll(item.href)}
-                  className="text-sm font-semibold tracking-wider text-white hover:text-[#d4a553] transition-colors duration-200 py-2 text-left"
+                  key={item.id}
+                  onClick={() => handleScroll(item.id)}
+                  className="text-sm font-semibold text-white py-2 text-left"
                 >
                   {item.label}
                 </button>
@@ -91,7 +89,7 @@ export function Header() {
 
               <button
                 onClick={() => handleScroll("contact")}
-                className="mt-2 px-6 py-2.5 bg-[#d4a553] text-[#0f1729] font-semibold text-sm tracking-wider rounded"
+                className="mt-2 px-6 py-2.5 bg-[#d4a553] text-[#0f1729] font-semibold text-sm rounded"
               >
                 GET A QUOTE
               </button>
