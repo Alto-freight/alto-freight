@@ -6,10 +6,10 @@ import { useState } from "react"
 import { Menu, X } from "lucide-react"
 
 const navItems = [
-  { href: "services", label: "SERVICES" },
-  { href: "coverage", label: "COVERAGE" },
-  { href: "why-alto", label: "WHY ALTO" },
-  { href: "contact", label: "CONTACT" },
+  { href: "#services", label: "SERVICES" },
+  { href: "#coverage", label: "COVERAGE" },
+  { href: "#why-alto", label: "WHY ALTO" },
+  { href: "#contact", label: "CONTACT" },
 ]
 
 export function Header() {
