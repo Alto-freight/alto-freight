@@ -14,12 +14,25 @@ export function ContactSection() {
   })
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission
-    console.log("Form submitted:", formData)
+  e.preventDefault()
+
+  const text = `New Quote Request:
+  Name: ${formData.name}
+  Company: ${formData.company}
+  Email: ${formData.email}
+  Phone: ${formData.phone}
+
+  Details:
+  ${formData.message}`
+
+    const url = `https://wa.me/12368280808?text=${encodeURIComponent(text)}`
+
+    window.open(url, "_blank")
+
     alert("Thank you for your inquiry! We will get back to you shortly.")
+
     setFormData({ name: "", email: "", phone: "", company: "", message: "" })
-  }
+ }
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
