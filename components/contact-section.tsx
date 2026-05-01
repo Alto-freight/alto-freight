@@ -1,8 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { Mail, Phone, MapPin, Send, Clock, Loader2 } from "lucide-react"
+import { Mail, Phone, MapPin, Send, Clock } from "lucide-react"
 import Image from "next/image"
+
+const WHATSAPP_NUMBER = "2368280808"
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -12,34 +14,34 @@ export function ContactSection() {
     company: "",
     message: "",
   })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success">("idle")
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
-    setSubmitStatus("idle")
+    
+    // Build the WhatsApp message
+    const message = `*New Quote Request from Alto Freight Website*
 
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      })
+*Name:* ${formData.name}
+*Email:* ${formData.email}
+*Phone:* ${formData.phone || "Not provided"}
+*Company:* ${formData.company || "Not provided"}
 
-      if (response.ok) {
-        setSubmitStatus("success")
-        setFormData({ name: "", email: "", phone: "", company: "", message: "" })
-      } else {
-        setSubmitStatus("error")
-      }
-    } catch {
-      setSubmitStatus("error")
-    } finally {
-      setIsSubmitting(false)
-    }
+*Message:*
+${formData.message}`
+
+    // Create WhatsApp URL
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
+    
+    // Open WhatsApp in new tab
+    window.open(whatsappUrl, "_blank")
+    
+    // Show success and reset form
+    setSubmitStatus("success")
+    setFormData({ name: "", email: "", phone: "", company: "", message: "" })
+    
+    // Reset status after 5 seconds
+    setTimeout(() => setSubmitStatus("idle"), 5000)
   }
 
   const handleChange = (
