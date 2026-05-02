@@ -6,118 +6,107 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-[#0a0f1a] border-t border-[#1a2235]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Logo & About */}
+    <footer className="bg-[#070b15]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10">
+        {/* CTA panel */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-14 border-b border-white/10">
+          <div className="lg:col-span-7">
+            <p className="eyebrow text-[#d4a553] mb-4">— Ready to Ship</p>
+            <h3 className="font-display text-white text-3xl lg:text-4xl leading-tight tracking-tight">
+              Move freight with a partner who <span className="italic text-[#d4a553]">treats it like their own.</span>
+            </h3>
+          </div>
+          <div className="lg:col-span-4 lg:col-start-9 self-end space-y-4">
+            <a
+              href="#contact"
+              className="group inline-flex items-center gap-3 text-white text-xs font-bold tracking-[0.25em] uppercase hover:text-[#d4a553] transition-colors duration-300"
+            >
+              <span className="w-10 h-px bg-current transition-all duration-300 group-hover:w-16" />
+              Request a Quote
+            </a>
+            <a
+              href="tel:7783889988"
+              className="block font-display text-2xl lg:text-3xl text-white hover:text-[#d4a553] transition-colors duration-300"
+            >
+              778-388-9988
+            </a>
+          </div>
+        </div>
+
+        {/* Columns */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 py-14">
           <div className="lg:col-span-2">
             <Image
               src="/logo.png"
               alt="Alto Freight Network"
               width={180}
               height={70}
-              className="h-16 w-auto mb-6"
+              className="h-14 w-auto mb-6"
             />
-            <p className="text-gray-400 max-w-md mb-6 leading-relaxed">
-              Alto Freight Network is your trusted partner for freight brokerage 
-              across Canada. With strong regional capacities and a commitment to 
-              excellence, we connect shippers with reliable carriers coast to coast.
+            <p className="text-white/60 leading-relaxed text-sm max-w-sm mb-6">
+              Your trusted partner for cross-Canada freight brokerage —
+              built on relationships, run with reliability.
             </p>
-            <div className="flex gap-4">
-              <span className="px-3 py-1 bg-[#d4a553]/10 text-[#d4a553] text-sm rounded-full font-medium">
-                Licensed Broker
-              </span>
-              <span className="px-3 py-1 bg-[#d4a553]/10 text-[#d4a553] text-sm rounded-full font-medium">
-                Bonded & Insured
-              </span>
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-white font-bold text-lg mb-6">QUICK LINKS</h4>
-            <nav className="space-y-3">
-              <Link
-                href="#services"
-                className="block text-gray-400 hover:text-[#d4a553] transition-colors"
-              >
-                Services
-              </Link>
-              <Link
-                href="#coverage"
-                className="block text-gray-400 hover:text-[#d4a553] transition-colors"
-              >
-                Coverage
-              </Link>
-              <Link
-                href="#why-alto"
-                className="block text-gray-400 hover:text-[#d4a553] transition-colors"
-              >
-                Why Alto
-              </Link>
-              <Link
-                href="#contact"
-                className="block text-gray-400 hover:text-[#d4a553] transition-colors"
-              >
-                Contact
-              </Link>
-              <Link
-                href="#contact"
-                className="block text-gray-400 hover:text-[#d4a553] transition-colors"
-              >
-                Request a Quote
-              </Link>
-            </nav>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h4 className="text-white font-bold text-lg mb-6">CONTACT US</h4>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <Mail className="w-5 h-5 text-[#d4a553] mt-0.5 shrink-0" />
-                <a
-                  href="mailto:admin@altofreight.ca"
-                  className="text-gray-400 hover:text-[#d4a553] transition-colors"
+            <div className="flex flex-wrap gap-2">
+              {["Licensed Broker", "Bonded & Insured"].map((tag) => (
+                <span
+                  key={tag}
+                  className="font-mono text-[10px] tracking-widest uppercase text-[#d4a553] border border-[#d4a553]/40 px-3 py-1"
                 >
-                  admin@altofreight.ca
-                </a>
-              </div>
-              <div className="flex items-start gap-3">
-                <Phone className="w-5 h-5 text-[#d4a553] mt-0.5 shrink-0" />
-                <a
-                  href="tel:7783889988"
-                  className="text-gray-400 hover:text-[#d4a553] transition-colors"
-                >
-                  778-388-9988
-                </a>
-              </div>
-              <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-[#d4a553] mt-0.5 shrink-0" />
-                <span className="text-gray-400">
-                  13137 82A Ave<br />
-                  Surrey, BC V3W 9Y6
+                  {tag}
                 </span>
-              </div>
+              ))}
             </div>
+          </div>
+
+          <div>
+            <p className="eyebrow text-[#d4a553] mb-5">— Navigate</p>
+            <ul className="space-y-3">
+              {[
+                { href: "#services", label: "Services" },
+                { href: "#coverage", label: "Coverage" },
+                { href: "#process", label: "Process" },
+                { href: "#why-alto", label: "Why Alto" },
+                { href: "#contact", label: "Contact" },
+              ].map((l) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    className="text-white/70 hover:text-[#d4a553] transition-colors text-sm"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <p className="eyebrow text-[#d4a553] mb-5">— Contact</p>
+            <ul className="space-y-3">
+              <li className="flex items-start gap-2 text-white/70 text-sm">
+                <Mail className="w-4 h-4 text-[#d4a553] mt-0.5 shrink-0" strokeWidth={1.5} />
+                <a href="mailto:admin@altofreight.ca" className="hover:text-[#d4a553] transition-colors">admin@altofreight.ca</a>
+              </li>
+              <li className="flex items-start gap-2 text-white/70 text-sm">
+                <Phone className="w-4 h-4 text-[#d4a553] mt-0.5 shrink-0" strokeWidth={1.5} />
+                <a href="tel:7783889988" className="hover:text-[#d4a553] transition-colors">778-388-9988</a>
+              </li>
+              <li className="flex items-start gap-2 text-white/70 text-sm">
+                <MapPin className="w-4 h-4 text-[#d4a553] mt-0.5 shrink-0" strokeWidth={1.5} />
+                <span>13137 82A Ave<br />Surrey, BC V3W 9Y6</span>
+              </li>
+            </ul>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-[#1a2235]">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-500 text-sm">
-              &copy; {currentYear} Alto Freight Network. All rights reserved.
-            </p>
-            <div className="flex gap-6 text-sm text-gray-500">
-              <Link href="#" className="hover:text-[#d4a553] transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="#" className="hover:text-[#d4a553] transition-colors">
-                Terms of Service
-              </Link>
-            </div>
-          </div>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 pt-8 border-t border-white/10">
+          <p className="font-mono text-[10px] tracking-widest uppercase text-white/40">
+            © {currentYear} Alto Freight Network · All Rights Reserved
+          </p>
+          <p className="font-mono text-[10px] tracking-widest uppercase text-white/40">
+            Licensed Freight Brokerage · Surrey, BC
+          </p>
         </div>
       </div>
     </footer>
