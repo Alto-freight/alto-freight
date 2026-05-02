@@ -1,106 +1,93 @@
+"use client"
+
 import { CheckCircle, TrendingUp, Users, Award, Zap, Globe } from "lucide-react"
 import Image from "next/image"
+import { useReveal } from "@/hooks/use-reveal"
 
 const reasons = [
-  {
-    icon: Users,
-    title: "CARRIER RELATIONSHIPS",
-    description:
-      "Deep-rooted partnerships with vetted carriers across Canada ensure reliable capacity even during peak seasons.",
-  },
-  {
-    icon: TrendingUp,
-    title: "COMPETITIVE RATES",
-    description:
-      "Our network volume allows us to negotiate better rates, savings we pass directly to our customers.",
-  },
-  {
-    icon: Zap,
-    title: "FAST RESPONSE",
-    description:
-      "Quick quotes and rapid load matching. Our team responds promptly because we know time is money in freight.",
-  },
-  {
-    icon: Award,
-    title: "INDUSTRY EXPERTISE",
-    description:
-      "Years of experience in Canadian logistics means we understand the unique challenges of moving freight in this country.",
-  },
-  {
-    icon: Globe,
-    title: "TECHNOLOGY DRIVEN",
-    description:
-      "Modern systems for tracking, communication, and documentation keep you informed every step of the way.",
-  },
-  {
-    icon: CheckCircle,
-    title: "RELIABILITY FIRST",
-    description:
-      "We stand behind our commitments. When we say your freight will arrive, it will arrive.",
-  },
+  { icon: Users, title: "Carrier Relationships", description: "Deep partnerships with vetted carriers across Canada ensure reliable capacity in every season." },
+  { icon: TrendingUp, title: "Competitive Rates", description: "Our network volume secures better rates — savings we pass directly to our customers." },
+  { icon: Zap, title: "Fast Response", description: "Quick quotes and rapid load matching. We respond promptly because time is money." },
+  { icon: Award, title: "Industry Expertise", description: "Years of Canadian logistics experience means we understand the unique challenges of this country." },
+  { icon: Globe, title: "Technology Driven", description: "Modern systems for tracking, communication, and documentation keep you informed every mile." },
+  { icon: CheckCircle, title: "Reliability First", description: "We stand behind our commitments. When we say your freight will arrive — it will arrive." },
 ]
 
-
+function ReasonItem({
+  reason,
+  index,
+}: {
+  reason: (typeof reasons)[number]
+  index: number
+}) {
+  const { ref, visible } = useReveal<HTMLDivElement>()
+  return (
+    <div
+      ref={ref}
+      className={`reveal ${visible ? "is-visible" : ""} group flex gap-5 p-6 rounded-sm hover:bg-white/[0.03] transition-colors duration-500`}
+      style={{ animationDelay: `${index * 80}ms` }}
+    >
+      <div className="w-12 h-12 shrink-0 flex items-center justify-center bg-[#d4a553]/10 group-hover:bg-[#d4a553] transition-colors duration-500 rounded-sm">
+        <reason.icon className="w-5 h-5 text-[#d4a553] group-hover:text-[#0f1729] transition-colors duration-500" strokeWidth={1.5} />
+      </div>
+      <div>
+        <h4 className="font-display text-xl text-white tracking-tight mb-2">
+          {reason.title}
+        </h4>
+        <p className="text-white/65 text-sm leading-relaxed">
+          {reason.description}
+        </p>
+      </div>
+    </div>
+  )
+}
 
 export function WhyAltoSection() {
   return (
-    <section id="why-alto" className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header - Left Aligned */}
-        <div className="mb-16">
-          <p className="text-[#d4a553] font-semibold tracking-wider mb-2">THE ALTO ADVANTAGE</p>
-          <h2 className="text-4xl sm:text-5xl font-bold text-[#0f1729] mb-4">
-            WHY ALTO
-          </h2>
-          <div className="w-24 h-1 bg-[#d4a553]" />
-          <p className="mt-6 text-gray-600 max-w-2xl text-lg">
-            Choosing the right freight partner impacts your bottom line. Here is why 
-            businesses across Canada trust Alto Freight Network.
-          </p>
-        </div>
+    <section id="why-alto" className="relative py-24 lg:py-28 bg-[#0f1729] overflow-hidden">
+      <div className="pointer-events-none absolute -bottom-40 -right-40 w-[32rem] h-[32rem] rounded-full bg-[#d4a553]/8 blur-3xl animate-blob-2" />
 
-        {/* Two Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
-          {/* Image Side */}
-          <div className="relative">
-            <div className="relative rounded-xl overflow-hidden h-full min-h-[400px]">
-              <Image
-                src="/images/freight-hero-3.jpg"
-                alt="Alto Freight Network Operations"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0f1729]/80 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-8">
-                <h3 className="text-2xl font-bold text-white mb-2">
-                  YOUR CARGO, <span className="text-[#d4a553]">OUR PRIORITY</span>
-                </h3>
-                <p className="text-gray-300">
-                  Every shipment matters. We treat your freight as if it were our own.
-                </p>
+      <div className="relative max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 mb-20 items-center">
+          <div className="lg:col-span-7">
+            <p className="eyebrow text-[#d4a553] mb-6">— The Alto Advantage</p>
+            <blockquote className="font-display text-white text-3xl sm:text-4xl lg:text-5xl leading-[1.15] tracking-tight">
+              "We don't move boxes. <span className="italic text-[#d4a553]">We move livelihoods —</span> freight that keeps Canadian businesses running."
+            </blockquote>
+            <div className="flex items-center gap-4 mt-8 pt-6 border-t border-white/10 max-w-md">
+              <div className="w-px h-10 bg-[#d4a553]" />
+              <div>
+                <p className="text-white text-sm font-semibold tracking-wider">ALTO FREIGHT NETWORK</p>
+                <p className="eyebrow text-white/50">— Founding Principle</p>
               </div>
             </div>
           </div>
 
-          {/* Reasons Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {reasons.map((reason, index) => (
-              <div key={index} className="flex gap-4">
-                <div className="w-12 h-12 bg-[#0f1729] rounded-lg flex items-center justify-center shrink-0">
-                  <reason.icon className="w-6 h-6 text-[#d4a553]" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-[#0f1729] mb-1">{reason.title}</h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {reason.description}
-                  </p>
-                </div>
+          <div className="lg:col-span-5 lg:col-start-8">
+            <div className="relative aspect-[4/3] lg:aspect-[4/5] rounded-sm overflow-hidden border border-white/10">
+              <Image
+                src="/images/freight-hero-3.jpg"
+                alt="Alto operations"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0f1729]/80 via-transparent to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <p className="eyebrow text-[#d4a553] mb-2">— On the Road</p>
+                <p className="font-display text-white text-xl italic">Your cargo. Our priority.</p>
               </div>
-            ))}
+            </div>
           </div>
         </div>
 
-
+        <div>
+          <p className="eyebrow text-[#d4a553] mb-6">— Why Choose Alto</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {reasons.map((reason, i) => (
+              <ReasonItem key={i} reason={reason} index={i} />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )

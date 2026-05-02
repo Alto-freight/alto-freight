@@ -1,133 +1,98 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import Image from "next/image"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
-const slides = [
-  {
-    image: "/images/freight-hero-1.jpg",
-    title: "DELIVERING EXCELLENCE",
-    subtitle: "ACROSS CANADA",
-    description: "Your trusted freight brokerage partner connecting businesses coast to coast",
-  },
-  {
-    image: "/images/freight-hero-2.jpg",
-    title: "SEAMLESS LOGISTICS",
-    subtitle: "SOLUTIONS",
-    description: "Strategic distribution networks ensuring your cargo reaches its destination on time",
-  },
-  {
-    image: "/images/freight-hero-3.jpg",
-    title: "RELIABILITY YOU",
-    subtitle: "CAN COUNT ON",
-    description: "A fleet of trusted carriers standing ready to move your freight",
-  },
+const heroStats = [
+  { value: "12K+", label: "Loads Delivered" },
+  { value: "500+", label: "Vetted Carriers" },
+  { value: "10", label: "Provinces Served" },
+  { value: "24/7", label: "Dispatch Support" },
 ]
 
 export function HeroSection() {
-  const [currentSlide, setCurrentSlide] = useState(0)
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length)
-    }, 6000)
-    return () => clearInterval(timer)
-  }, [])
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
-  }
-
   return (
-    <section className="relative h-screen w-full overflow-hidden">
-      {/* Slides */}
-      {slides.map((slide, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            index === currentSlide ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <Image
-            src={slide.image}
-            alt={slide.title}
-            fill
-            className="object-cover"
-            priority={index === 0}
-          />
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0f1729]/90 via-[#0f1729]/70 to-[#0f1729]/50" />
-        </div>
-      ))}
+    <section className="relative min-h-screen w-full bg-[#0f1729] overflow-hidden">
+      {/* Background image bleeds in from the right */}
+      <div className="absolute inset-y-0 right-0 w-full lg:w-1/2 z-0">
+        <Image
+          src="/images/freight-hero-1.jpg"
+          alt="Cross-Canada Freight"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0f1729] via-[#0f1729]/85 lg:via-[#0f1729]/40 to-[#0f1729]/40" />
+      </div>
 
-      {/* Content */}
-      <div className="relative z-10 h-full flex items-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="max-w-3xl">
-            <div className="overflow-hidden">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-2 leading-tight">
-                {slides[currentSlide].title}
-              </h1>
-              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#d4a553] mb-6 leading-tight">
-                {slides[currentSlide].subtitle}
-              </h2>
-            </div>
-            <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-xl">
-              {slides[currentSlide].description}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center px-8 py-4 bg-[#d4a553] text-[#0f1729] font-semibold text-sm tracking-wider rounded hover:bg-[#e8c478] transition-colors duration-200"
-              >
-                REQUEST A QUOTE
-              </a>
-              <a
-                href="#services"
-                className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold text-sm tracking-wider rounded hover:bg-white hover:text-[#0f1729] transition-colors duration-200"
-              >
-                OUR SERVICES
-              </a>
-            </div>
+      <div className="pointer-events-none absolute -top-40 -left-40 w-[36rem] h-[36rem] rounded-full bg-[#d4a553]/10 blur-3xl animate-blob-1 z-0" />
+
+      <div className="relative z-10 max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 pt-36 pb-20 lg:pt-44 lg:pb-28 min-h-screen flex flex-col justify-center">
+        <div className="max-w-2xl">
+          <div
+            className="inline-flex items-center gap-3 mb-8"
+            style={{ animation: "fade-up 0.8s ease-out both" }}
+          >
+            <span className="w-2 h-2 rounded-full bg-[#d4a553] animate-pulse-gold" />
+            <span className="eyebrow text-[#d4a553]">Canadian Freight Brokerage</span>
+          </div>
+
+          <h1
+            className="font-display text-white leading-[1.02] tracking-tight mb-8 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium"
+            style={{ animation: "fade-up 0.9s ease-out 0.1s both" }}
+          >
+            Moving freight <span className="italic text-[#d4a553]">forward,</span> coast to coast.
+          </h1>
+
+          <p
+            className="text-base sm:text-lg text-white/70 max-w-xl leading-relaxed mb-10"
+            style={{ animation: "fade-up 0.9s ease-out 0.3s both" }}
+          >
+            A Canadian freight brokerage built on relationships, reliability,
+            and results. From Vancouver to Halifax, we connect shippers with
+            vetted carriers — and treat every load like our own.
+          </p>
+
+          <div
+            className="flex flex-col sm:flex-row items-start sm:items-center gap-5"
+            style={{ animation: "fade-up 0.9s ease-out 0.45s both" }}
+          >
+            <a
+              href="#contact"
+              className="group inline-flex items-center gap-3 px-7 py-4 bg-[#d4a553] text-[#0f1729] text-xs font-bold tracking-[0.2em] uppercase hover:shadow-xl hover:shadow-[#d4a553]/30 hover:-translate-y-0.5 transition-all duration-300"
+            >
+              Request a Quote
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </a>
+            <a
+              href="#services"
+              className="group inline-flex items-center gap-3 text-white/80 hover:text-[#d4a553] text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-300"
+            >
+              <span className="w-8 h-px bg-current transition-all duration-300 group-hover:w-12" />
+              View Services
+            </a>
           </div>
         </div>
       </div>
 
-      {/* Navigation Arrows */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-[#0f1729]/50 hover:bg-[#d4a553] text-white hover:text-[#0f1729] rounded-full transition-colors duration-200"
-        aria-label="Previous slide"
-      >
-        <ChevronLeft size={32} />
-      </button>
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-[#0f1729]/50 hover:bg-[#d4a553] text-white hover:text-[#0f1729] rounded-full transition-colors duration-200"
-        aria-label="Next slide"
-      >
-        <ChevronRight size={32} />
-      </button>
-
-      {/* Slide Indicators */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentSlide
-                ? "bg-[#d4a553] w-8"
-                : "bg-white/50 hover:bg-white"
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
+      {/* Bottom stats strip */}
+      <div className="relative z-10 border-t border-white/10 bg-[#0a0f1a]/70 backdrop-blur-sm">
+        <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
+          <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-white/10">
+            {heroStats.map((stat, i) => (
+              <div
+                key={i}
+                className="py-6 px-4 lg:px-6 first:pl-0 last:pr-0 flex flex-col gap-1"
+                style={{ animation: `fade-up 0.7s ease-out ${0.6 + i * 0.08}s both` }}
+              >
+                <span className="font-display text-2xl lg:text-3xl text-white font-medium tracking-tight">
+                  {stat.value}
+                </span>
+                <span className="eyebrow text-white/50 text-[10px]">{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )
