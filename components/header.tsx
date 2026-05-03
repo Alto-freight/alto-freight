@@ -6,11 +6,10 @@ import { useEffect, useState } from "react"
 import { Menu, X, Phone, Mail } from "lucide-react"
 
 const navItems = [
-  { href: "#services", label: "Services" },
-  { href: "#coverage", label: "Coverage" },
-  { href: "#process", label: "Process" },
-  { href: "#why-alto", label: "Why Alto" },
-  { href: "#contact", label: "Contact" },
+  { href: "/services", label: "Services" },
+  { href: "/coverage", label: "Coverage" },
+  { href: "/why-alto", label: "Why Alto" },
+  { href: "/contact", label: "Contact" },
 ]
 
 export function Header() {
@@ -41,9 +40,9 @@ export function Header() {
         <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 h-10 flex items-center justify-between text-[11px] text-white/60 font-mono tracking-widest">
           <span>EST. ALTO FREIGHT NETWORK · SURREY, BC</span>
           <div className="flex items-center gap-6">
-            <a href="tel:7783889988" className="flex items-center gap-2 hover:text-[#d4a553] transition-colors">
+            <a href="tel:2368280808" className="flex items-center gap-2 hover:text-[#d4a553] transition-colors">
               <Phone className="w-3 h-3" />
-              778-388-9988
+              236-828-0808
             </a>
             <a href="mailto:admin@altofreight.ca" className="flex items-center gap-2 hover:text-[#d4a553] transition-colors">
               <Mail className="w-3 h-3" />
@@ -62,7 +61,7 @@ export function Header() {
               alt="Alto Freight Network"
               width={240}
               height={80}
-              className={`w-auto transition-all duration-300 ${scrolled ? "h-14" : "h-[72px]"}`}
+              className={`w-auto mix-blend-lighten transition-all duration-300 ${scrolled ? "h-14" : "h-[72px]"}`}
               priority
             />
           </Link>
@@ -82,7 +81,7 @@ export function Header() {
 
           <div className="hidden lg:flex items-center gap-4">
             <Link
-              href="#contact"
+              href="/contact"
               className="group relative inline-flex items-center gap-3 px-5 py-2.5 border border-[#d4a553]/40 text-[#d4a553] text-xs tracking-[0.2em] font-semibold uppercase hover:bg-[#d4a553] hover:text-[#0f1729] transition-all duration-300"
             >
               Get a Quote
@@ -113,7 +112,7 @@ export function Header() {
                 </Link>
               ))}
               <Link
-                href="#contact"
+                href="/contact"
                 className="mt-4 inline-flex items-center justify-center px-6 py-3 bg-[#d4a553] text-[#0f1729] font-semibold text-xs tracking-[0.2em] uppercase"
                 onClick={() => setMobileMenuOpen(false)}
               >

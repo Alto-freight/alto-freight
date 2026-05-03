@@ -1,17 +1,12 @@
 import type { Metadata } from "next"
-import { Inter, Fraunces } from "next/font/google"
+import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-})
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
   style: ["normal", "italic"],
 })
 
@@ -76,7 +71,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${fraunces.variable} font-sans antialiased bg-[#0f1729]`}
+        className={`${inter.variable} font-sans antialiased bg-[#0f1729]`}
         suppressHydrationWarning
       >
         {children}
