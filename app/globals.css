@@ -40,8 +40,8 @@
 
 @theme inline {
   --font-sans: var(--font-inter), 'Inter', system-ui, sans-serif;
-  --font-display: var(--font-fraunces), 'Fraunces', Georgia, serif;
-  --font-mono: ui-monospace, 'SF Mono', monospace;
+  --font-display: var(--font-inter), 'Inter', system-ui, sans-serif;
+  --font-mono: var(--font-inter), 'Inter', system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -158,20 +158,22 @@ html {
 /* ===== Editorial design system ===== */
 
 .font-display {
-  font-family: var(--font-fraunces), Georgia, serif;
-  letter-spacing: -0.025em;
-  font-feature-settings: 'ss01' on;
+  font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
+  letter-spacing: -0.03em;
+  font-feature-settings: 'ss01' on, 'cv11' on;
+  font-weight: 600;
 }
 
 .font-mono {
-  font-family: var(--font-mono);
+  font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
   letter-spacing: 0.05em;
+  font-feature-settings: 'tnum' on;
 }
 
 .eyebrow {
-  font-family: var(--font-mono);
+  font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
   font-size: 11px;
-  letter-spacing: 0.4em;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
   font-weight: 600;
 }

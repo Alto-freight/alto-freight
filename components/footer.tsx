@@ -18,7 +18,7 @@ export function Footer() {
           </div>
           <div className="lg:col-span-4 lg:col-start-9 self-end space-y-4">
             <a
-              href="#contact"
+              href="/contact"
               className="group inline-flex items-center gap-3 text-white text-xs font-bold tracking-[0.25em] uppercase hover:text-[#d4a553] transition-colors duration-300"
             >
               <span className="w-10 h-px bg-current transition-all duration-300 group-hover:w-16" />
@@ -41,33 +41,22 @@ export function Footer() {
               alt="Alto Freight Network"
               width={180}
               height={70}
-              className="h-14 w-auto mb-6"
+              className="h-14 w-auto mix-blend-lighten mb-6"
             />
-            <p className="text-white/60 leading-relaxed text-sm max-w-sm mb-6">
+            <p className="text-white/60 leading-relaxed text-sm max-w-sm">
               Your trusted partner for cross-Canada freight brokerage —
               built on relationships, run with reliability.
             </p>
-            <div className="flex flex-wrap gap-2">
-              {["Licensed Broker", "Bonded & Insured"].map((tag) => (
-                <span
-                  key={tag}
-                  className="font-mono text-[10px] tracking-widest uppercase text-[#d4a553] border border-[#d4a553]/40 px-3 py-1"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
           </div>
 
           <div>
             <p className="eyebrow text-[#d4a553] mb-5">— Navigate</p>
             <ul className="space-y-3">
               {[
-                { href: "#services", label: "Services" },
-                { href: "#coverage", label: "Coverage" },
-                { href: "#process", label: "Process" },
-                { href: "#why-alto", label: "Why Alto" },
-                { href: "#contact", label: "Contact" },
+                { href: "/services", label: "Services" },
+                { href: "/coverage", label: "Coverage" },
+                { href: "/why-alto", label: "Why Alto" },
+                { href: "/contact", label: "Contact" },
               ].map((l) => (
                 <li key={l.href}>
                   <Link
@@ -105,7 +94,7 @@ export function Footer() {
             © {currentYear} Alto Freight Network · All Rights Reserved
           </p>
           <p className="font-mono text-[10px] tracking-widest uppercase text-white/40">
-            Licensed Freight Brokerage · Surrey, BC
+            Surrey, BC · Canada
           </p>
         </div>
       </div>
