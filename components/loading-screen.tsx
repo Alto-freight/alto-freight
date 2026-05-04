@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 
 export function LoadingScreen() {
   const [hidden, setHidden] = useState(false)
@@ -19,29 +20,42 @@ export function LoadingScreen() {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#0f1729] transition-opacity duration-700 ${
+      className={`fixed inset-0 z-[100] flex items-center justify-center bg-[#0f1729] transition-opacity duration-700 ${
         hidden ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
       aria-hidden={hidden}
     >
-      <div className="relative flex flex-col items-center gap-8">
-        <span className="font-mono text-[10px] tracking-[0.6em] text-[#d4a553]">
-          — ALTO FREIGHT NETWORK
-        </span>
-        <h1 className="font-display text-7xl sm:text-9xl text-white font-medium tracking-tight">
-          A<span className="italic text-[#d4a553]">l</span>to
-        </h1>
+      <style>{`
+        @keyframes fade-pulse {
+          0%, 100% { opacity: 0.6; }
+          50% { opacity: 1; }
+        }
+        .animate-fade-pulse {
+          animation: fade-pulse 2s ease-in-out infinite;
+        }
+      `}</style>
 
-        <div className="relative w-72 h-px bg-white/15 overflow-hidden mt-4">
-          <span
-            className="absolute inset-y-0 left-0 w-1/3 bg-[#d4a553]"
-            style={{ animation: "loader-bar 1.2s ease-in-out infinite" }}
+      <div className="relative flex flex-col items-center gap-12">
+        {/* Logo container */}
+        <div className="relative flex items-center justify-center">
+          {/* Logo with fade pulse */}
+          <Image
+            src="/logo.png"
+            alt="Alto Freight Network"
+            width={200}
+            height={80}
+            className="w-auto h-auto mix-blend-lighten animate-fade-pulse"
+            priority
           />
         </div>
 
-        <p className="font-mono text-[10px] text-white/40 tracking-[0.4em] uppercase">
-          Coast to Coast · Since 2024
-        </p>
+        {/* Minimal loading indicator */}
+        <div className="w-24 h-0.5 bg-white/10 rounded-full overflow-hidden">
+          <div
+            className="h-full bg-[#d4a553] rounded-full"
+            style={{ animation: "loader-bar 1.2s ease-in-out infinite" }}
+          />
+        </div>
       </div>
     </div>
   )
