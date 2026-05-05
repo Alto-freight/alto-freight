@@ -44,7 +44,7 @@ export function LoadingScreen() {
             alt="Alto Freight Network"
             width={180}
             height={180}
-            className="h-44 w-44 rounded-2xl animate-fade-pulse"
+            className="h-44 w-44 animate-fade-pulse"
             priority
           />
         </div>

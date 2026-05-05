@@ -61,7 +61,7 @@ export function Header() {
               alt="Alto Freight Network"
               width={120}
               height={120}
-              className={`rounded-xl transition-all duration-300 ${scrolled ? "h-12 w-12" : "h-16 w-16"}`}
+              className={`transition-all duration-300 ${scrolled ? "h-12 w-12" : "h-16 w-16"}`}
               priority
             />
           </Link>
