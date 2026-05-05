@@ -59,9 +59,9 @@ export function Header() {
             <Image
               src="/logo.png"
               alt="Alto Freight Network"
-              width={240}
-              height={80}
-              className={`w-auto mix-blend-lighten transition-all duration-300 ${scrolled ? "h-14" : "h-[72px]"}`}
+              width={120}
+              height={120}
+              className={`rounded-xl transition-all duration-300 ${scrolled ? "h-12 w-12" : "h-16 w-16"}`}
               priority
             />
           </Link>

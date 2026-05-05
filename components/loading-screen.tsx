@@ -42,9 +42,9 @@ export function LoadingScreen() {
           <Image
             src="/logo.png"
             alt="Alto Freight Network"
-            width={200}
-            height={80}
-            className="w-auto h-auto mix-blend-lighten animate-fade-pulse"
+            width={180}
+            height={180}
+            className="h-44 w-44 rounded-2xl animate-fade-pulse"
             priority
           />
         </div>
