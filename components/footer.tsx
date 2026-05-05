@@ -41,7 +41,7 @@ export function Footer() {
               alt="Alto Freight Network"
               width={120}
               height={120}
-              className="h-20 w-20 rounded-xl mb-6"
+              className="h-20 w-20 mb-6"
             />
             <p className="text-white/60 leading-relaxed text-sm max-w-sm">
               Your trusted partner for cross-Canada freight brokerage —
