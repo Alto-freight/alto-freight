@@ -65,6 +65,7 @@ export default function RootLayout({
               logo: "https://altofreight.ca/logo.png",
               sameAs: [
                 "https://www.linkedin.com/company/alto-freight-network-inc/",
+                "https://www.facebook.com/Altofreight"
               ],
             }),
           }}
