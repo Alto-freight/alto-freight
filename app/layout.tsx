@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "freight brokerage, Canada logistics, trucking, transportation, BC freight, Alberta freight, Ontario freight, Quebec freight",
 
   icons: {
-    icon: "/logo.png",
+    icon: "/Logo1.jpeg",
   },
 
   openGraph: {
