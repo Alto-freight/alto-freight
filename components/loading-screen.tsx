@@ -40,7 +40,7 @@ export function LoadingScreen() {
         <div className="relative flex items-center justify-center">
           {/* Logo with fade pulse */}
           <Image
-            src="/Logo1.jpeg"
+            src="/logo.png"
             alt="Alto Freight Network"
             width={180}
             height={180}
